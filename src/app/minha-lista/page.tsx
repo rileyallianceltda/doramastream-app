@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Play, Info, Search, Bell, ChevronDown, Menu, X, Lock, Crown, Plus, Check, ThumbsUp } from "lucide-react";
 
-// ============================================================================
+*/ // ============================================================================
 // ÁREA DE EDIÇÃO MANUAL DE CONTEÚDO
 // ============================================================================
 
@@ -106,7 +106,7 @@ const MAIN_BANNER = {
   ]
 };
 
-const ROWS = [
+const ROWS: any[] = []; /*
   {
     title: "Em Alta",
     movies: [
@@ -343,14 +343,14 @@ export default function BrowsePage() {
             DORAMASTREAM
           </Link>
           <div className="hidden md:flex gap-4 text-sm text-gray-300">
-            <Link href="/browse" className="text-white font-medium hover:text-gray-400 transition-colors">Início</Link>
+            <Link href="/browse" className="hover:text-gray-400 transition-colors">Início</Link>
             <Link href="/series" className="hover:text-gray-400 transition-colors">Séries</Link>
             
             <span className="flex items-center gap-2 hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Filmes")}>
               Filmes {userRole !== "admin" && <Lock className="w-4 h-4 text-[#e50914]" />}
             </span>
             
-            <Link href="/minha-lista" className="hover:text-gray-400 transition-colors">Minha lista</Link>
+            <Link href="/minha-lista" className="text-white font-medium hover:text-gray-400 transition-colors">Minha lista</Link>
           </div>
         </div>
 

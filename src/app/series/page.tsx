@@ -343,8 +343,8 @@ export default function BrowsePage() {
             DORAMASTREAM
           </Link>
           <div className="hidden md:flex gap-4 text-sm text-gray-300">
-            <Link href="/browse" className="text-white font-medium hover:text-gray-400 transition-colors">Início</Link>
-            <Link href="/series" className="hover:text-gray-400 transition-colors">Séries</Link>
+            <Link href="/browse" className="hover:text-gray-400 transition-colors">Início</Link>
+            <Link href="/series" className="text-white font-medium hover:text-gray-400 transition-colors">Séries</Link>
             
             <span className="flex items-center gap-2 hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Filmes")}>
               Filmes {userRole !== "admin" && <Lock className="w-4 h-4 text-[#e50914]" />}

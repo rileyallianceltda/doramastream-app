@@ -108,151 +108,140 @@ const MAIN_BANNER = {
 
 const ROWS = [
   {
-    title: "Em Alta",
+    title: "Séries de Ação e Suspense",
     movies: [
       { 
-        id: "100", 
-        title: "Agente Kim: Reativado", 
-        image: "https://image.tmdb.org/t/p/w500/g1LJLlmWP74zv9yXKEXm7g9p10O.jpg", 
-        description: "O gerente Kim é um trabalhador como qualquer outro, e sua maior preocupação é se conectar com a filha Kim Min-ji.", 
-        videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhYX0pYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1tCSEVISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D",
-        episodes: [
-          { "id": 1, "title": "Episódio 1", "duration": "45 min", "description": "O gerente Kim é um trabalhador como qualquer outro...", "image": "https://image.tmdb.org/t/p/w500/j1z8gs6jhJtRzS2Z3dSM5qKtvCM.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEtTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D" },
-          { "id": 2, "title": "Episódio 2", "duration": "45 min", "description": "Desesperado para encontrar Min-ji...", "image": "https://image.tmdb.org/t/p/w500/75cFdAXUOmeVX2NhtdDthdJ9276.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384772.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE1cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1xEQBk%3D" },
-          { "id": 3, "title": "Episódio 3", "duration": "45 min", "description": "Na procura por Min-ji...", "image": "https://image.tmdb.org/t/p/w500/v8pPQuIbicSgqm2xWW20LZaTQk5.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386058.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE5dR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1VHSxk%3D" },
-          { "id": 4, "title": "Episódio 4", "duration": "45 min", "description": "As ações de Kim o deixam na mira...", "image": "https://image.tmdb.org/t/p/w500/2yGGXfQmvcHlxktR17CowgcxVyp.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386087.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE9cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1VHShk%3D" },
-          { "id": 5, "title": "Episódio 5", "duration": "45 min", "description": "Episódio 5", "image": "https://image.tmdb.org/t/p/w500/eMUfMt3PczKcEuHDczeC1RwXcZz.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386742.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEBfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWlhJRBk%3D" },
-          { "id": 6, "title": "Episódio 6", "duration": "45 min", "description": "Episódio 6", "image": "https://image.tmdb.org/t/p/w500/5nn1Dnb4udjJdnNcYNXM8CeFdsN.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386875.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEFfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWlhJSxk%3D" },
-          { "id": 7, "title": "Episódio 7", "duration": "45 min", "description": "Episódio 7", "image": "https://image.tmdb.org/t/p/w500/50iNTwCz358iEgJW7dZtugaQ8eA.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/387506.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0hfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVxBQRk%3D" },
-          { "id": 8, "title": "Episódio 8", "duration": "45 min", "description": "Episódio 8", "image": "https://image.tmdb.org/t/p/w500/s0NeAeh5x74Gzja767ksNbzh3sz.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/387549.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0lfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWV5DQhk%3D" },
-          { "id": 9, "title": "Episódio 9", "duration": "45 min", "description": "Episódio 9", "image": "https://image.tmdb.org/t/p/w500/yr9ZDaEz7bNSCFycTZBWftCjL2h.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/388481.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0ldR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVtEQBk%3D" },
-          { "id": 10, "title": "Episódio 10", "duration": "45 min", "description": "Episódio 10", "image": "https://image.tmdb.org/t/p/w500/ySFDgVK2lKXYkFi4TuORq45TmmF.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/388547.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0lTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVVEQRk%3D" }
-        ]
-      },
-      { id: "1", title: "Beleza Verdadeira", image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop", description: "Uma garota do ensino médio sofre bullying por sua aparência e domina a arte da maquiagem.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { id: "2", title: "Sorriso Real", image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=800&auto=format&fit=crop", description: "O herdeiro de um império de hotéis entra em conflito com uma funcionária conhecida por seu sorriso irresistível.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { id: "3", title: "Vincenzo", image: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?q=80&w=800&auto=format&fit=crop", description: "Durante uma visita ao seu país natal, um conselheiro da máfia coreano-italiano faz justiça com as próprias mãos.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { id: "4", title: "Tudo Bem Não Ser Normal", image: "https://images.unsplash.com/photo-1533147670608-2a2f9776d3ac?q=80&w=800&auto=format&fit=crop", description: "O caminho para a cura emocional se abre para um cuidador de doentes mentais e uma escritora antissocial.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-    ],
+              id: "100", 
+              title: "Agente Kim: Reativado", 
+              image: "https://image.tmdb.org/t/p/w500/g1LJLlmWP74zv9yXKEXm7g9p10O.jpg", 
+              description: "O gerente Kim é um trabalhador como qualquer outro, e sua maior preocupação é se conectar com a filha Kim Min-ji.", 
+              videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhYX0pYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1tCSEVISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D",
+              episodes: [
+                { "id": 1, "title": "Episódio 1", "duration": "45 min", "description": "O gerente Kim é um trabalhador como qualquer outro...", "image": "https://image.tmdb.org/t/p/w500/j1z8gs6jhJtRzS2Z3dSM5qKtvCM.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEtTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D" },
+                { "id": 2, "title": "Episódio 2", "duration": "45 min", "description": "Desesperado para encontrar Min-ji...", "image": "https://image.tmdb.org/t/p/w500/75cFdAXUOmeVX2NhtdDthdJ9276.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384772.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE1cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1xEQBk%3D" },
+                { "id": 3, "title": "Episódio 3", "duration": "45 min", "description": "Na procura por Min-ji...", "image": "https://image.tmdb.org/t/p/w500/v8pPQuIbicSgqm2xWW20LZaTQk5.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386058.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE5dR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1VHSxk%3D" },
+                { "id": 4, "title": "Episódio 4", "duration": "45 min", "description": "As ações de Kim o deixam na mira...", "image": "https://image.tmdb.org/t/p/w500/2yGGXfQmvcHlxktR17CowgcxVyp.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386087.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWE9cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYW1VHShk%3D" },
+                { "id": 5, "title": "Episódio 5", "duration": "45 min", "description": "Episódio 5", "image": "https://image.tmdb.org/t/p/w500/eMUfMt3PczKcEuHDczeC1RwXcZz.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386742.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEBfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWlhJRBk%3D" },
+                { "id": 6, "title": "Episódio 6", "duration": "45 min", "description": "Episódio 6", "image": "https://image.tmdb.org/t/p/w500/5nn1Dnb4udjJdnNcYNXM8CeFdsN.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/386875.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWEFfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWlhJSxk%3D" },
+                { "id": 7, "title": "Episódio 7", "duration": "45 min", "description": "Episódio 7", "image": "https://image.tmdb.org/t/p/w500/50iNTwCz358iEgJW7dZtugaQ8eA.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/387506.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0hfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVxBQRk%3D" },
+                { "id": 8, "title": "Episódio 8", "duration": "45 min", "description": "Episódio 8", "image": "https://image.tmdb.org/t/p/w500/s0NeAeh5x74Gzja767ksNbzh3sz.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/387549.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0lfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWV5DQhk%3D" },
+                { "id": 9, "title": "Episódio 9", "duration": "45 min", "description": "Episódio 9", "image": "https://image.tmdb.org/t/p/w500/yr9ZDaEz7bNSCFycTZBWftCjL2h.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/388481.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0ldR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVtEQBk%3D" },
+                { "id": 10, "title": "Episódio 10", "duration": "45 min", "description": "Episódio 10", "image": "https://image.tmdb.org/t/p/w500/ySFDgVK2lKXYkFi4TuORq45TmmF.jpg", "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/388547.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZX0lTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUUFYWVVEQRk%3D" }
+              ]
+            }
+    ]
   },
   {
-    title: "Lançamentos na DoramaStream",
+    title: "Dramas Médicos e Romances",
     movies: [
       { 
-        id: "101", 
-        title: "Resident Playbook", 
-        image: "https://image.tmdb.org/t/p/w500/oXaMHOQGx2V4HwoBa0IrouBe1yb.jpg", 
-        description: "Residentes de ginecologia e obstetrícia do Centro Médico Yulje encaram o caos do trabalho.", 
-        videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWkxTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUU9cU1VCQBk%3D",
-        episodes: [
-          {
-            "id": 1,
-            "title": "Episódio 1",
-            "duration": "60 min",
-            "description": "Com dificuldades financeiras, Oh Yi-young precisa voltar à vida de residente e acaba cometendo vários erros.",
-            "image": "https://image.tmdb.org/t/p/w500/ozu4s6IQX1L7M4dzAjS45PCMsfY.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUteR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9cU1VCQBk%3D"
-          },
-          {
-            "id": 2,
-            "title": "Episódio 2",
-            "duration": "60 min",
-            "description": "Cansados da rotina difícil do hospital, os residentes do primeiro ano pensam em desistir.",
-            "image": "https://image.tmdb.org/t/p/w500/8O8cKj9rHfB7Vt8cpEesvZngoct.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318153.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUtcR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9cU1VCRxk%3D"
-          },
-          {
-            "id": 3,
-            "title": "Episódio 3",
-            "duration": "60 min",
-            "description": "Episódio 3",
-            "image": "https://image.tmdb.org/t/p/w500/qHU4gH5rlxDrRM8SffOxScW4igC.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318924.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUtSR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9dWVxISxk%3D"
-          },
-          {
-            "id": 4,
-            "title": "Episódio 4",
-            "duration": "60 min",
-            "description": "Episódio 4",
-            "image": "https://image.tmdb.org/t/p/w500/wHnG00Zk5pM9qqGFsETrbNvvPiJ.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318925.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxaR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9dWVxIShk%3D"
-          },
-          {
-            "id": 5,
-            "title": "Episódio 5",
-            "duration": "60 min",
-            "description": "Episódio 5",
-            "image": "https://image.tmdb.org/t/p/w500/oEDZ5kPSVsIUBSmnsrDNsnI0RLw.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/319890.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9SX11HRxk%3D"
-          },
-          {
-            "id": 6,
-            "title": "Episódio 6",
-            "duration": "60 min",
-            "description": "Episódio 6",
-            "image": "https://image.tmdb.org/t/p/w500/tNmbISQ6YtmxEVJ8c037XdOyq9x.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/319891.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9SX11HRhk%3D"
-          },
-          {
-            "id": 7,
-            "title": "Episódio 7",
-            "duration": "60 min",
-            "description": "Episódio 7",
-            "image": "https://image.tmdb.org/t/p/w500/o2ZXngVZNmeJiP8n1Mbcvtm0yhZ.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320495.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxdR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TWF1FQhk%3D"
-          },
-          {
-            "id": 8,
-            "title": "Episódio 8",
-            "duration": "60 min",
-            "description": "Episódio 8",
-            "image": "https://image.tmdb.org/t/p/w500/Ah7vCqGkSEDQbFk1VwCBFjPfcrY.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320496.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TWF1FQRk%3D"
-          },
-          {
-            "id": 9,
-            "title": "Episódio 9",
-            "duration": "60 min",
-            "description": "Episódio 9",
-            "image": "https://image.tmdb.org/t/p/w500/1SVU1AZqzNOfCxgxzu0xiiJxCUZ.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320944.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1bR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TXFtHShk%3D"
-          },
-          {
-            "id": 10,
-            "title": "Episódio 10",
-            "duration": "60 min",
-            "description": "Episódio 10",
-            "image": "https://image.tmdb.org/t/p/w500/Aa8I4YHXgibAjwA6nINbr0449wR.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320945.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1eR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TXFtIQxk%3D"
-          },
-          {
-            "id": 11,
-            "title": "Episódio 11",
-            "duration": "60 min",
-            "description": "Episódio 11",
-            "image": "https://image.tmdb.org/t/p/w500/swJuUGBVJF1TYiYvN92jPyzKA3r.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/322151.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUUBaXl5DShk%3D"
-          },
-          {
-            "id": 12,
-            "title": "Episódio 12",
-            "duration": "60 min",
-            "description": "Episódio 12",
-            "image": "https://image.tmdb.org/t/p/w500/zZkt3ZYC1oChhAYHdF3Zqa1eJ72.jpg",
-            "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/322152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1SR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUUBaXl5EQxk%3D"
-          }
-        ]
-      },
-      { id: "8", title: "Pretendente Surpresa", image: "https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?q=80&w=800&auto=format&fit=crop", description: "Ela vai a um encontro às cegas no lugar da amiga para assustar o pretendente, mas descobre que ele é seu chefe.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { id: "9", title: "O Rei de Porcelana", image: "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?q=80&w=800&auto=format&fit=crop", description: "Quando o príncipe herdeiro é morto, sua irmã gêmea assume o trono.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { id: "10", title: "Meu Demônio Favorito", image: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=800&auto=format&fit=crop", description: "Um demônio perde seus poderes após se envolver com uma herdeira fria e arrogante.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-    ],
-  },
+              id: "101", 
+              title: "Resident Playbook", 
+              image: "https://image.tmdb.org/t/p/w500/oXaMHOQGx2V4HwoBa0IrouBe1yb.jpg", 
+              description: "Residentes de ginecologia e obstetrícia do Centro Médico Yulje encaram o caos do trabalho.", 
+              videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZWkxTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCQUtISQkEFh4OAgQsDQ9IUU9cU1VCQBk%3D",
+              episodes: [
+                {
+                  "id": 1,
+                  "title": "Episódio 1",
+                  "duration": "60 min",
+                  "description": "Com dificuldades financeiras, Oh Yi-young precisa voltar à vida de residente e acaba cometendo vários erros.",
+                  "image": "https://image.tmdb.org/t/p/w500/ozu4s6IQX1L7M4dzAjS45PCMsfY.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUteR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9cU1VCQBk%3D"
+                },
+                {
+                  "id": 2,
+                  "title": "Episódio 2",
+                  "duration": "60 min",
+                  "description": "Cansados da rotina difícil do hospital, os residentes do primeiro ano pensam em desistir.",
+                  "image": "https://image.tmdb.org/t/p/w500/8O8cKj9rHfB7Vt8cpEesvZngoct.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318153.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUtcR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9cU1VCRxk%3D"
+                },
+                {
+                  "id": 3,
+                  "title": "Episódio 3",
+                  "duration": "60 min",
+                  "description": "Episódio 3",
+                  "image": "https://image.tmdb.org/t/p/w500/qHU4gH5rlxDrRM8SffOxScW4igC.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318924.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUtSR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9dWVxISxk%3D"
+                },
+                {
+                  "id": 4,
+                  "title": "Episódio 4",
+                  "duration": "60 min",
+                  "description": "Episódio 4",
+                  "image": "https://image.tmdb.org/t/p/w500/wHnG00Zk5pM9qqGFsETrbNvvPiJ.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/318925.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxaR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9dWVxIShk%3D"
+                },
+                {
+                  "id": 5,
+                  "title": "Episódio 5",
+                  "duration": "60 min",
+                  "description": "Episódio 5",
+                  "image": "https://image.tmdb.org/t/p/w500/oEDZ5kPSVsIUBSmnsrDNsnI0RLw.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/319890.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9SX11HRxk%3D"
+                },
+                {
+                  "id": 6,
+                  "title": "Episódio 6",
+                  "duration": "60 min",
+                  "description": "Episódio 6",
+                  "image": "https://image.tmdb.org/t/p/w500/tNmbISQ6YtmxEVJ8c037XdOyq9x.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/319891.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxfR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9SX11HRhk%3D"
+                },
+                {
+                  "id": 7,
+                  "title": "Episódio 7",
+                  "duration": "60 min",
+                  "description": "Episódio 7",
+                  "image": "https://image.tmdb.org/t/p/w500/o2ZXngVZNmeJiP8n1Mbcvtm0yhZ.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320495.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxdR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TWF1FQhk%3D"
+                },
+                {
+                  "id": 8,
+                  "title": "Episódio 8",
+                  "duration": "60 min",
+                  "description": "Episódio 8",
+                  "image": "https://image.tmdb.org/t/p/w500/Ah7vCqGkSEDQbFk1VwCBFjPfcrY.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320496.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXUxTR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TWF1FQRk%3D"
+                },
+                {
+                  "id": 9,
+                  "title": "Episódio 9",
+                  "duration": "60 min",
+                  "description": "Episódio 9",
+                  "image": "https://image.tmdb.org/t/p/w500/1SVU1AZqzNOfCxgxzu0xiiJxCUZ.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320944.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1bR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TXFtHShk%3D"
+                },
+                {
+                  "id": 10,
+                  "title": "Episódio 10",
+                  "duration": "60 min",
+                  "description": "Episódio 10",
+                  "image": "https://image.tmdb.org/t/p/w500/Aa8I4YHXgibAjwA6nINbr0449wR.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/320945.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1eR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUU9TXFtIQxk%3D"
+                },
+                {
+                  "id": 11,
+                  "title": "Episódio 11",
+                  "duration": "60 min",
+                  "description": "Episódio 11",
+                  "image": "https://image.tmdb.org/t/p/w500/swJuUGBVJF1TYiYvN92jPyzKA3r.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/322151.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1cR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUUBaXl5DShk%3D"
+                },
+                {
+                  "id": 12,
+                  "title": "Episódio 12",
+                  "duration": "60 min",
+                  "description": "Episódio 12",
+                  "image": "https://image.tmdb.org/t/p/w500/zZkt3ZYC1oChhAYHdF3Zqa1eJ72.jpg",
+                  "videoUrl": "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/resident%20playbook/322152.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhZXU1SR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1pCRUdISQkEFh4OAgQsDQ9IUUBaXl5EQxk%3D"
+                }
+              ]
+            }
+    ]
+  }
 ];
-
-// ============================================================================
-// FIM DA ÁREA DE EDIÇÃO
-// ============================================================================
 
 export default function BrowsePage() {
   const [isScrolled, setIsScrolled] = useState(false);

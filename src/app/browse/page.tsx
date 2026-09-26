@@ -353,22 +353,24 @@ export default function BrowsePage() {
           </Link>
           <div className="hidden md:flex gap-4 text-sm text-gray-300">
             <span onClick={() => handleNavClick("Início")} className="text-white font-medium cursor-pointer">Início</span>
-            <span onClick={() => handleNavClick("Séries")} className="hover:text-gray-400 transition-colors cursor-pointer">Séries</span>
             
-          <span className="flex items-center gap-2 hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Filmes")}>
-            Filmes {userRole !== "admin" && <Lock className="w-4 h-4 text-[#e50914]" />}
-          </span>
-          <span className="hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Séries")}>
-            Séries
-          </span>
-          <span className="hover:text-gray-400 cursor-pointer transition-colors" onClick={() => {
-            const listRow = document.getElementById("minha-lista-row");
-            if (listRow) listRow.scrollIntoView({ behavior: 'smooth' });
-          }}>
-            Minha lista
-          </span>
-
-            <span onClick={() => handleNavClick("Minha lista")} className="hover:text-gray-400 transition-colors cursor-pointer">Minha lista</span>
+            <span className="flex items-center gap-2 hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Filmes")}>
+              Filmes {userRole !== "admin" && <Lock className="w-4 h-4 text-[#e50914]" />}
+            </span>
+            
+            <span className="hover:text-gray-400 cursor-pointer transition-colors" onClick={() => {
+              const seriesRow = document.getElementById("row-0");
+              if (seriesRow) seriesRow.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              Séries
+            </span>
+            
+            <span className="hover:text-gray-400 cursor-pointer transition-colors" onClick={() => {
+              const listRow = document.getElementById("minha-lista-row");
+              if (listRow) listRow.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              Minha lista
+            </span>
           </div>
         </div>
 
@@ -415,16 +417,30 @@ export default function BrowsePage() {
       )}
 
       {/* Hero Banner */}
-      <div className="relative h-[85vh] w-full">
+      <div className="relative h-[85vh] w-full bg-black">
         <div className="absolute inset-0 w-full h-full">
           <Image
             src={MAIN_BANNER.image}
             alt={MAIN_BANNER.title}
             fill
-            className="object-cover"
+            className={`object-cover transition-opacity duration-1000 ${showTrailer && MAIN_BANNER.trailerUrl ? 'opacity-0' : 'opacity-100'}`}
             priority
             unoptimized
           />
+          
+          {showTrailer && MAIN_BANNER.trailerUrl && (
+            <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+              <iframe
+                className="absolute w-[150%] h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                src={`https://www.youtube.com/embed/${MAIN_BANNER.trailerUrl}?autoplay=1&mute=1&controls=0&loop=1&playlist=${MAIN_BANNER.trailerUrl}&playsinline=1`}
+                title="Trailer"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
+
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />
         </div>

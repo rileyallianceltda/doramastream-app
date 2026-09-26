@@ -10,17 +10,26 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (email === "admin" && password === "admin") {
-      localStorage.setItem("userRole", "admin");
-      router.push("/browse");
-    } else if (email === "lead" && password === "lead") {
-      localStorage.setItem("userRole", "lead");
-      router.push("/browse");
-    } else {
-      alert("Usuário ou senha incorretos! Tente admin/admin ou lead/lead.");
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      
+      const data = await res.json();
+      
+      if (data.success) {
+        localStorage.setItem("userRole", data.user.role);
+        router.push("/browse");
+      } else {
+        alert(data.message || "Usuário ou senha incorretos!");
+      }
+    } catch (err) {
+      alert("Erro ao conectar com o servidor.");
     }
   };
 

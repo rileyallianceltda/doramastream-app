@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Play, Info, Search, Bell, ChevronDown, Menu, X, Lock, Crown } from "lucide-react";
+import { Play, Info, Search, Bell, ChevronDown, Menu, X, Lock, Crown, Plus, Check, ThumbsUp } from "lucide-react";
 
 // ============================================================================
 // ÁREA DE EDIÇÃO MANUAL DE CONTEÚDO
@@ -20,6 +20,7 @@ const MAIN_BANNER = {
   match: "100% Relevante",
   age: "16",
   duration: "1 Temporada",
+  trailerUrl: "Pj15bA-rCSI", // ID do YouTube do Trailer (coloque o ID correto do YouTube aqui)
   videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhYX0pYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1tCSEVISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D",
   episodes: [
     {
@@ -262,6 +263,48 @@ export default function BrowsePage() {
   const [userRole, setUserRole] = useState("lead");
   const [showUpsell, setShowUpsell] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState("");
+
+  const [myList, setMyList] = useState<any[]>([]);
+  const [showTrailer, setShowTrailer] = useState(false);
+  
+  // Efeito para carregar "Minha Lista" do cache local
+  useEffect(() => {
+    const savedList = localStorage.getItem("doramastream_mylist");
+    if (savedList) {
+      try { setMyList(JSON.parse(savedList)); } catch (e) {}
+    }
+  }, []);
+
+  const toggleMyList = (movie: any) => {
+    setMyList(prev => {
+      const isAlreadyInList = prev.some(item => item.id === movie.id);
+      let newList;
+      if (isAlreadyInList) {
+        newList = prev.filter(item => item.id !== movie.id);
+      } else {
+        newList = [...prev, movie];
+      }
+      localStorage.setItem("doramastream_mylist", JSON.stringify(newList));
+      return newList;
+    });
+  };
+
+  const isInMyList = (movieId: string) => {
+    return myList.some(item => item.id === movieId);
+  };
+
+  // Efeito para o delay do Trailer no banner principal
+  useEffect(() => {
+    if (!selectedMovie) {
+      const timer = setTimeout(() => {
+        setShowTrailer(true);
+      }, 3000); // 3 segundos para começar o trailer
+      return () => clearTimeout(timer);
+    } else {
+      setShowTrailer(false);
+    }
+  }, [selectedMovie]);
+
   
   const router = useRouter();
 
@@ -311,10 +354,20 @@ export default function BrowsePage() {
           <div className="hidden md:flex gap-4 text-sm text-gray-300">
             <span onClick={() => handleNavClick("Início")} className="text-white font-medium cursor-pointer">Início</span>
             <span onClick={() => handleNavClick("Séries")} className="hover:text-gray-400 transition-colors cursor-pointer">Séries</span>
-            <span onClick={() => handleNavClick("Filmes")} className="hover:text-white flex items-center gap-1 transition-colors cursor-pointer group">
-              Filmes
-              {userRole !== "admin" && <Lock className="w-3 h-3 text-gray-400 group-hover:text-white" />}
-            </span>
+            
+          <span className="flex items-center gap-2 hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Filmes")}>
+            Filmes {userRole !== "admin" && <Lock className="w-4 h-4 text-[#e50914]" />}
+          </span>
+          <span className="hover:text-gray-400 cursor-pointer" onClick={() => handleNavClick("Séries")}>
+            Séries
+          </span>
+          <span className="hover:text-gray-400 cursor-pointer transition-colors" onClick={() => {
+            const listRow = document.getElementById("minha-lista-row");
+            if (listRow) listRow.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            Minha lista
+          </span>
+
             <span onClick={() => handleNavClick("Minha lista")} className="hover:text-gray-400 transition-colors cursor-pointer">Minha lista</span>
           </div>
         </div>

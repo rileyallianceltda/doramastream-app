@@ -20,7 +20,7 @@ const MAIN_BANNER = {
   match: "100% Relevante",
   age: "16",
   duration: "1 Temporada",
-  trailerUrl: "Pj15bA-rCSI", // ID do YouTube do Trailer (coloque o ID correto do YouTube aqui)
+  trailerUrl: "xSztRfnJZzE", // ID do YouTube do Trailer (coloque o ID correto do YouTube aqui)
   videoUrl: "http://www-fontedecanais-sh.77zzhf54vdll71.com/series/agente%20kim%20reativado/384626.mp4?username=PlayTvOficial-vods&token=C1EQAgcOWlBaW0lDUFhYX0pYR04FAAEZBAoVD0lWUiMIChM%2FDiUNBRMaBQdHHRcOGE5cUQkKEjQbBQUCFRAQAgUFC0hRTkJDVElGSRoLBQgHGgAfAklCW1tCSEVISQkEFh4OAgQsDQ9IUUFYW1xEQRk%3D",
   episodes: [
     {
@@ -265,7 +265,8 @@ export default function BrowsePage() {
   const [showComingSoon, setShowComingSoon] = useState("");
 
   const [myList, setMyList] = useState<any[]>([]);
-  const [showTrailer, setShowTrailer] = useState(false);
+  const [hoveredMovie, setHoveredMovie] = useState<string | null>(null);
+    let hoverTimer: any = null;
   
   // Efeito para carregar "Minha Lista" do cache local
   useEffect(() => {
@@ -293,17 +294,7 @@ export default function BrowsePage() {
     return myList.some(item => item.id === movieId);
   };
 
-  // Efeito para o delay do Trailer no banner principal
-  useEffect(() => {
-    if (!selectedMovie) {
-      const timer = setTimeout(() => {
-        setShowTrailer(true);
-      }, 3000); // 3 segundos para começar o trailer
-      return () => clearTimeout(timer);
-    } else {
-      setShowTrailer(false);
-    }
-  }, [selectedMovie]);
+  // Efeito para o delay do Trailer removido do banner principal a pedido do usuário
 
   
   const router = useRouter();
@@ -423,23 +414,12 @@ export default function BrowsePage() {
             src={MAIN_BANNER.image}
             alt={MAIN_BANNER.title}
             fill
-            className={`object-cover transition-opacity duration-1000 ${showTrailer && MAIN_BANNER.trailerUrl ? 'opacity-0' : 'opacity-100'}`}
+            className="object-cover"
             priority
             unoptimized
           />
           
-          {showTrailer && MAIN_BANNER.trailerUrl && (
-            <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-              <iframe
-                className="absolute w-[150%] h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                src={`https://www.youtube.com/embed/${MAIN_BANNER.trailerUrl}?autoplay=1&mute=1&controls=0&loop=1&playlist=${MAIN_BANNER.trailerUrl}&playsinline=1`}
-                title="Trailer"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
+
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />

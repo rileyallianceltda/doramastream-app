@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoramaStream - +5.000 Doramas Sem Limites</title>
+    <meta name="description" content="Assista mais de 5.000 Doramas na palma da sua mão. Seus doramas dublados e legendados em 4K.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['"Inter"', 'sans-serif'],
+                        bebas: ['"Bebas Neue"', 'sans-serif']
+                    },
+                    colors: {
+                        netflix: {
+                            red: '#FF0A16', /* Cor vermelha BEM VIVA */
+                            black: '#000000',
+                            dark: '#0f0f0f', 
+                            gray: '#2D2D2D',
+                            light: '#E5E5E5'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll-covers': 'scroll-covers 30s linear infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'scroll-covers': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(calc(-50% - 0.5rem))' }
+                        },
+                        'shimmer': {
+                            '0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+                            '100%': { transform: 'translateX(200%) skewX(-15deg)' }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background: radial-gradient(circle at 50% 0%, #2a0505 0%, #000000 70%);
+            background-color: #000000; 
+            color: #ffffff; 
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        .logo-dorama {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #FF0A16;
+            letter-spacing: 2.5px;
+            text-shadow: 0 0 25px rgba(255, 10, 22, 0.7);
+            transform: scaleY(1.05); 
+            display: inline-block;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #2D2D2D; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF0A16; }
+
+        .n-card { 
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
+        }
+        .gradient-text { 
+            background: linear-gradient(to right, #ffffff, #E5E5E5);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .btn-netflix { 
+            background-color: #FF0A16;
+            box-shadow: 0 0 25px rgba(255, 10, 22, 0.6); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .btn-netflix:hover { 
+            background-color: #ff2a35;
+            box-shadow: 0 0 40px rgba(255, 10, 22, 0.9); 
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-item.active i.fa-chevron-down { transform: rotate(180deg); color: #FF0A16; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .perspective-container { perspective: 1000px; }
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease; }
+        .tilt-card-inner { transform: translateZ(30px); }
+
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            top: var(--y, 50%);
+            left: var(--x, 50%);
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,10,22,0.25) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s;
+        }
+        .spotlight-card:hover::before { width: 500px; height: 500px; }
+
+        .vignette {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.8) 150%);
+            pointer-events: none;
+            z-index: 40;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-netflix-red selection:text-white relative">
+
+    <div class="fixed top-0 w-full z-50 bg-netflix-black/80 backdrop-blur-md border-b border-netflix-gray/50 py-3 transition-transform duration-300 transform translate-y-0" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center text-xs md:text-sm font-semibold text-netflix-light">
+            <div class="flex items-center gap-3">
+                <span class="logo-dorama text-2xl leading-none mt-1">DORAMASTREAM</span>
+            </div>
+            <div class="flex items-center gap-2 bg-netflix-dark px-3 py-1.5 rounded-full border border-netflix-gray/50 shadow-[0_0_10px_rgba(255,10,22,0.2)]">
+                <span class="hidden md:inline text-gray-400">Oferta encerra em:</span>
+                <span class="text-netflix-red font-bold flex items-center gap-2">
+                    <i class="fa-regular fa-clock animate-pulse"></i> <span id="countdown">14:59</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <header class="relative pt-28 pb-12 md:pt-40 md:pb-24 px-4 flex flex-col items-center text-center overflow-hidden">
+        <div class="vignette"></div>
+        
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-netflix-red opacity-30 blur-[150px] -z-10 rounded-full animate-pulse-slow"></div>
+        
+        <div class="max-w-4xl mx-auto z-10 reveal active perspective-container">
+            <div class="inline-flex items-center gap-2 bg-netflix-red/10 border border-netflix-red/40 px-5 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest text-netflix-light mb-8 backdrop-blur-sm shadow-[0_0_15px_rgba(255,10,22,0.3)]">
+                <span class="w-2 h-2 rounded-full bg-netflix-red animate-pulse"></span>
+                O Maior Catálogo do Brasil
+            </div>
+            
+            <!-- Streaming Icons -->
+            <div class="flex flex-wrap justify-center items-center gap-3 md:gap-6 mb-8 animate-[pulse_4s_ease-in-out_infinite]">
+                <img src="imagens/streamings/netflix.png" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="Netflix">
+                <img src="imagens/streamings/viki.webp" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="Viki">
+                <img src="imagens/streamings/iqyi.webp" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="iQIYI">
+                <img src="imagens/streamings/disney.png" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="Disney+">
+                <img src="imagens/streamings/primevideo.png" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="Prime Video">
+                <img src="imagens/streamings/dramabox.png" class="h-8 md:h-10 object-contain hover:scale-110 transition-transform duration-500 opacity-70 hover:opacity-100" alt="Dramabox">
+            </div>
+
+            <h1 class="text-[40px] leading-[1.1] md:text-6xl lg:text-7xl font-black tracking-tight mb-6 text-white drop-shadow-2xl">
+                Tenha acesso a Doramas de todos Streamings<br>
+                <span class="text-netflix-red drop-shadow-[0_0_20px_rgba(255,10,22,0.5)]">em apenas um</span>
+                <img src="imagens/icon.png" class="inline-block h-10 md:h-14 lg:h-16 align-middle ml-2 -mt-2 drop-shadow-[0_0_15px_rgba(255,10,22,0.8)] anim-pulse-scale">
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-300 font-medium mb-6 max-w-2xl mx-auto leading-relaxed">
+                Assista seus doramas favoritos dublados e legendados em 4K. 
+                Tudo na <span class="logo-dorama text-xl align-middle">DORAMASTREAM</span> por <strong>menos de 1 café por mês</strong>.
+            </p>
+
+            <!-- Video Player Mockup -->
+            <div class="relative w-full max-w-4xl mx-auto aspect-video bg-netflix-black rounded-xl border border-netflix-gray shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden mb-8 group cursor-pointer tilt-card tilt-js">
+                <div class="tilt-card-inner w-full h-full">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" alt="Plataforma VSL">
+                    <div class="absolute inset-0 bg-gradient-to-t from-netflix-black via-netflix-black/20 to-transparent"></div>
+                    
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-netflix-red/90 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_40px_rgba(255,10,22,0.8)] group-hover:scale-110 group-hover:bg-netflix-red transition-all duration-300 border border-white/20">
+                        <i class="fa-solid fa-play ml-2"></i>
+                    </div>
+                    <div class="absolute bottom-6 left-0 w-full text-center text-sm font-bold text-netflix-light tracking-wide drop-shadow-md">
+                        CLIQUE PARA ASSISTIR COMO FUNCIONA A PLATAFORMA
+                    </div>
+                </div>
+            </div>
+
+            <a href="#planos" class="inline-flex items-center justify-center gap-3 btn-netflix text-white text-lg md:text-xl font-black uppercase tracking-wider px-10 py-5 rounded-md relative overflow-hidden group">
+                <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                <span class="relative z-10 flex items-center gap-2">Quero Assistir Agora <i class="fa-solid fa-chevron-right text-sm"></i></span>
+            </a>
+            <div class="mt-6 flex items-center justify-center gap-6 text-sm font-medium text-gray-400">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-lock text-gray-300"></i> Ambiente Seguro</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-netflix-red"></i> Acesso Imediato</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-10 md:py-14 relative overflow-hidden bg-netflix-black border-t border-netflix-gray/30">
+        <div class="max-w-6xl mx-auto px-4 text-center mb-6 reveal">
+            <h2 class="text-3xl md:text-5xl font-black mb-6">A Casa Definitiva dos <span class="text-netflix-red">Doramas</span></h2>
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
+                Todos os catálogos unificados na <span class="logo-dorama text-xl align-middle">DORAMASTREAM</span>. Qualidade 4K, 80% dublado, lançamentos simultâneos e 100% sem anúncios.
+            </p>
+        </div>
+
+        <div class="w-full relative py-8 reveal">
+            <div class="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-netflix-black to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-netflix-black to-transparent z-10 pointer-events-none"></div>
+            
+            <h3 class="text-white font-bold text-xl px-8 md:px-16 mb-4 z-20 relative"><span class="w-2 h-6 bg-netflix-red inline-block align-middle mr-2 rounded-sm shadow-[0_0_10px_rgba(255,10,22,0.8)]"></span> Em Alta na <span class="logo-dorama text-2xl align-middle">DORAMASTREAM</span></h3>
+            
+            <!-- Carrossel de Capas -->
+            <div class="overflow-visible pb-12 pt-4">
+                <div id="doramaCarousel" class="flex gap-4 w-max animate-scroll-covers px-4 transition-opacity duration-500 opacity-0 group hover:[animation-play-state:paused]">
+                    <!-- Imagens injetadas via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 md:py-10 bg-netflix-dark border-b border-netflix-gray/30 relative shadow-inner">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-netflix-red/5 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto px-4 text-center reveal relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#111] text-netflix-red mb-6 text-2xl border border-netflix-red/30 shadow-[0_0_20px_rgba(255,10,22,0.2)]">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black mb-4">Será que tem o seu favorito?</h2>
+            <p class="text-gray-300 mb-8 text-lg font-medium">Tire a prova real agora. Pesquise o nome do dorama que você quer assistir:</p>
+            
+            <div class="n-card p-6 md:p-10 rounded-2xl text-left relative overflow-hidden border-netflix-gray/50 shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-shimmer z-0 pointer-events-none"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row gap-3">
+                    <div class="relative flex-1 group">
+                        <i class="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-netflix-red transition-colors z-20"></i>
+                        <input type="text" id="searchDorama" onkeypress="if(event.key === 'Enter') simulateSearch(event)" class="w-full bg-[#0a0a0a] border border-netflix-gray text-white rounded-md py-4 pl-14 pr-4 focus:outline-none focus:border-netflix-red focus:ring-1 focus:ring-netflix-red transition-all text-lg shadow-inner relative z-10" placeholder="Ex: Beleza Verdadeira..." value="Pousando no Amor">
+                    </div>
+                    <button onclick="simulateSearch(event)" class="bg-netflix-red hover:bg-red-700 text-white font-black px-10 py-4 rounded-md transition-colors whitespace-nowrap text-lg uppercase tracking-wider shadow-[0_0_15px_rgba(255,10,22,0.4)]">
+                        Buscar
+                    </button>
+                </div>
+                
+                <div id="searchResult" class="mt-6 hidden transition-all duration-300 opacity-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 md:py-12 relative bg-netflix-black">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center reveal">
+            <div class="n-card p-8 rounded-xl hover:-translate-y-2 hover:border-netflix-red/50 hover:shadow-[0_15px_30px_rgba(255,10,22,0.2)] transition-all duration-300">
+                <i class="fa-solid fa-microphone-lines text-4xl text-netflix-red mb-4 drop-shadow-[0_0_15px_rgba(255,10,22,0.5)]"></i>
+                <h4 class="font-bold text-white mb-2 text-lg">Dublado PT-BR</h4>
+                <p class="text-sm text-gray-400 leading-relaxed">Centenas de doramas com dublagem profissional.</p>
+            </div>
+            <div class="n-card p-8 rounded-xl hover:-translate-y-2 hover:border-netflix-red/50 hover:shadow-[0_15px_30px_rgba(255,10,22,0.2)] transition-all duration-300">
+                <i class="fa-solid fa-tv text-4xl text-netflix-red mb-4 drop-shadow-[0_0_15px_rgba(255,10,22,0.5)]"></i>
+                <h4 class="font-bold text-white mb-2 text-lg">Multi-Telas</h4>
+                <p class="text-sm text-gray-400 leading-relaxed">Assista na Smart TV, Celular, Tablet ou PC.</p>
+            </div>
+            <div class="n-card p-8 rounded-xl hover:-translate-y-2 hover:border-netflix-red/50 hover:shadow-[0_15px_30px_rgba(255,10,22,0.2)] transition-all duration-300">
+                <i class="fa-solid fa-rocket text-4xl text-netflix-red mb-4 drop-shadow-[0_0_15px_rgba(255,10,22,0.5)]"></i>
+                <h4 class="font-bold text-white mb-2 text-lg">Zero Travamentos</h4>
+                <p class="text-sm text-gray-400 leading-relaxed">Servidores dedicados premium. Dê play e assista liso.</p>
+            </div>
+            <div class="n-card p-8 rounded-xl hover:-translate-y-2 hover:border-netflix-red/50 hover:shadow-[0_15px_30px_rgba(255,10,22,0.2)] transition-all duration-300">
+                <i class="fa-solid fa-calendar-plus text-4xl text-netflix-red mb-4 drop-shadow-[0_0_15px_rgba(255,10,22,0.5)]"></i>
+                <h4 class="font-bold text-white mb-2 text-lg">Lançamentos</h4>
+                <p class="text-sm text-gray-400 leading-relaxed">Episódios novos saindo no mesmo dia da Coreia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 md:py-10 bg-netflix-black border-b border-netflix-gray/30 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 reveal">
+            <h2 class="text-3xl md:text-5xl font-black mb-4 text-center">Baixe nosso Aplicativo Oficial e <span class="text-netflix-red">Assista de Qualquer Tela</span></h2>
+            <p class="text-gray-300 font-medium text-lg text-center mb-8">Sincronização perfeita onde quer que você esteja.</p>
+
+            <div class="relative w-full max-w-5xl mx-auto h-[400px] md:h-[500px] flex justify-center items-end">
+                
+                <!-- Smart TV Background -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-3xl z-10 drop-shadow-2xl">
+                    <div class="relative bg-black rounded-t-xl rounded-b-sm border-t-[6px] border-x-[6px] border-b-[12px] border-[#111] aspect-video shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
+                        <!-- INSIRA O LINK DO MOCKUP DA TV AQUI -->
+                        <img src="https://placehold.co/1280x720/1a0505/FF0A16?text=PRINT+TELA+SMART+TV" alt="Smart TV Interface" class="w-full h-full object-cover">
+                        <!-- Reflexo da tela -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                    </div>
+                    <!-- Pezinho da TV -->
+                    <div class="w-32 h-4 mx-auto bg-gradient-to-b from-[#222] to-[#0a0a0a] rounded-b-md"></div>
+                    <div class="w-48 h-2 mx-auto bg-[#0a0a0a] rounded-full mt-1 blur-[2px]"></div>
+                </div>
+
+                <!-- Laptop Left -->
+                <div class="absolute bottom-0 left-0 md:left-10 w-2/3 md:w-2/5 max-w-lg z-20 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500 drop-shadow-2xl">
+                    <div class="relative bg-black rounded-t-lg border-[4px] border-[#222] aspect-video overflow-hidden shadow-2xl">
+                        <!-- INSIRA O LINK DO MOCKUP DO PC AQUI -->
+                        <img src="https://placehold.co/800x450/1a0505/FF0A16?text=PRINT+TELA+PC/NOTEBOOK" alt="Laptop Interface" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Base do laptop -->
+                    <div class="w-[105%] -ml-[2.5%] h-3 bg-gradient-to-b from-[#333] to-[#111] rounded-b-xl relative">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#111] rounded-b-md"></div>
+                    </div>
+                </div>
+
+                <!-- Smartphone Right -->
+                <div class="absolute -bottom-4 right-4 md:right-16 w-1/3 md:w-1/4 max-w-[200px] z-30 transform rotate-3 hover:rotate-0 hover:-translate-y-4 transition-all duration-500 drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)]">
+                    <div class="relative bg-black rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-[#222] aspect-[9/19] overflow-hidden shadow-inner">
+                        <!-- Notch do celular -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-5 bg-[#222] rounded-b-xl z-10"></div>
+                        <!-- INSIRA O LINK DO MOCKUP DO CELULAR AQUI -->
+                        <img src="https://placehold.co/400x850/1a0505/FF0A16?text=PRINT+TELA+CELULAR" alt="Mobile Interface" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 md:py-14 bg-netflix-dark border-b border-netflix-gray/30 relative">
+        <div class="max-w-6xl mx-auto px-4 reveal">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">A Escolha de <span class="text-netflix-red drop-shadow-[0_0_15px_rgba(255,10,22,0.5)]">+75.000</span> Dorameiras</h2>
+                <p class="text-gray-300 font-medium text-lg">A comunidade que parou de sofrer com sites piratas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="n-card p-8 rounded-xl relative hover:border-netflix-red/30 transition-colors">
+                    <div class="text-netflix-red text-sm mb-6 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-netflix-light text-sm md:text-base italic mb-8 leading-relaxed">"Mandei cancelar outros streamings na hora! Tem tudo dublado e a imagem na TV fica perfeita. Sobra dinheiro pro final de semana. Recomendo muito!"</p>
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 bg-netflix-gray rounded-full flex items-center justify-center text-white font-bold border border-netflix-red/30">AM</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Amanda M.</h4>
+                            <span class="text-xs text-gray-400 font-medium"><i class="fa-solid fa-circle-check text-green-500 mr-1"></i> Assinante Há 6 meses</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="n-card p-8 rounded-xl relative hover:border-netflix-red/30 transition-colors">
+                    <div class="text-netflix-red text-sm mb-6 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-netflix-light text-sm md:text-base italic mb-8 leading-relaxed">"O catálogo é gigante. Já vi mais de 30 doramas diferentes e sempre tem novidade na aba de lançamentos. Nunca mais usei Telegram na vida."</p>
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 bg-netflix-gray rounded-full flex items-center justify-center text-white font-bold border border-netflix-red/30">CB</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Carolina B.</h4>
+                            <span class="text-xs text-gray-400 font-medium"><i class="fa-solid fa-circle-check text-green-500 mr-1"></i> Assinante Há 1 ano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="n-card p-8 rounded-xl relative hover:border-netflix-red/30 transition-colors">
+                    <div class="text-netflix-red text-sm mb-6 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-netflix-light text-sm md:text-base italic mb-8 leading-relaxed">"Pagar R$ 25 por ANO chega a ser piada perto do que o app entrega. Roda liso no meu celular e eu baixo pra assistir no ônibus."</p>
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 bg-netflix-gray rounded-full flex items-center justify-center text-white font-bold border border-netflix-red/30">JF</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Júlia F.</h4>
+                            <span class="text-xs text-gray-400 font-medium"><i class="fa-solid fa-circle-check text-green-500 mr-1"></i> Assinante Há 3 meses</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 md:py-14 bg-netflix-dark relative overflow-hidden border-b border-netflix-gray/30">
+        <!-- Glow ambiente vívido -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-netflix-red/15 blur-[150px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 reveal relative z-10">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-5xl font-black mb-4 drop-shadow-md">Compare e Comprove</h2>
+                <p class="text-gray-300 font-medium text-lg">A matemática simples de quem parou de perder dinheiro.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch justify-center perspective-container">
+                
+                <!-- Concorrencia -->
+                <div class="w-full lg:w-5/12 n-card p-6 md:p-8 rounded-2xl relative border-t-4 border-t-netflix-gray opacity-95 tilt-card tilt-js shadow-2xl">
+                    <div class="tilt-card-inner">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">O Método Antigo</h3>
+                            <p class="text-sm text-gray-400">Assinar tudo separado</p>
+                        </div>
+                        
+                        <ul class="space-y-3">
+                            <!-- Concorrentes usando ícones/FontAwesome para evitar quebra no Preview -->
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-[#E50914] text-[#E50914] overflow-hidden transition-colors"><img src="imagens/streamings/netflix.png" alt="Netflix" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">Netflix</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 55,90/mês</span>
+                            </li>
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-[#0082FB] text-[#0082FB] overflow-hidden transition-colors"><img src="imagens/streamings/viki.webp" alt="Viki" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">Viki Pass</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 29,90/mês</span>
+                            </li>
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-[#00E500] text-[#00E500] overflow-hidden transition-colors"><img src="imagens/streamings/iqyi.webp" alt="iQIYI" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">iQIYI</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 29,90/mês</span>
+                            </li>
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-[#00108A] text-[#00108A] overflow-hidden transition-colors"><img src="imagens/streamings/disney.png" alt="Disney+" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">Disney+</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 43,90/mês</span>
+                            </li>
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-[#00A8E1] text-[#00A8E1] overflow-hidden transition-colors"><img src="imagens/streamings/primevideo.png" alt="Prime Video" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">Prime Video</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 19,90/mês</span>
+                            </li>
+                            <li class="flex justify-between items-center text-netflix-light font-medium p-2 rounded bg-[#111] border border-[#222] hover:bg-[#222] transition-colors group">
+                                <span class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-black rounded flex items-center justify-center border border-[#333] group-hover:border-purple-500 text-purple-500 overflow-hidden transition-colors"><img src="imagens/streamings/dramabox.png" alt="Dramabox" class="w-full h-full object-contain"></div>
+                                    <span class="group-hover:text-white transition-colors">Dramabox</span>
+                                </span>
+                                <span class="text-white font-bold">R$ 49,90/mês</span>
+                            </li>
+                        </ul>
+                        <div class="pt-4 mt-3 border-t border-netflix-gray flex flex-col justify-center items-center text-white bg-[#0a0a0a] rounded-lg p-3">
+                            <span class="font-bold text-gray-400 text-xs uppercase tracking-wider mb-1">Custo Total / Ano (Aprox.):</span>
+                            <span class="text-3xl font-black text-white opacity-50 line-through decoration-netflix-red decoration-4">R$ 2.752,80</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/12 flex justify-center items-center text-4xl text-netflix-red animate-pulse z-10">
+                    <i class="fa-solid fa-arrow-right hidden lg:block drop-shadow-[0_0_20px_rgba(255,10,22,0.9)]"></i>
+                    <i class="fa-solid fa-arrow-down lg:hidden drop-shadow-[0_0_20px_rgba(255,10,22,0.9)]"></i>
+                </div>
+
+                <!-- A Nossa Oferta -->
+                <div class="w-full lg:w-5/12 bg-netflix-black border border-netflix-red p-1 rounded-2xl shadow-[0_0_80px_rgba(255,10,22,0.4)] transform lg:scale-105 relative z-20 tilt-card tilt-js spotlight-card">
+                    <div class="tilt-card-inner h-full">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-netflix-red text-white px-8 py-2 rounded-full text-sm font-black uppercase tracking-widest shadow-[0_5px_25px_rgba(255,10,22,0.8)] whitespace-nowrap z-30 border border-white/30">A Solução Definitiva</div>
+                        
+                        <div class="bg-gradient-to-b from-[#3a0a0a] to-[#0a0a0a] p-8 md:p-10 rounded-xl h-full flex flex-col items-center justify-center text-center relative overflow-hidden border border-netflix-red/20">
+                            <div class="logo-dorama text-4xl md:text-5xl mb-2 relative z-10">DORAMASTREAM</div>
+                            <p class="text-white text-sm mb-8 relative z-10 font-medium">Todos os catálogos unificados no mesmo app</p>
+                            
+                            <div class="flex items-start justify-center gap-1 mb-1 relative z-10">
+                                <span class="text-3xl font-bold text-white mt-2 drop-shadow-md">R$</span>
+                                <span class="text-8xl font-black text-white tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]">25</span>
+                                <span class="text-4xl font-bold text-white mt-2 drop-shadow-md">,90</span>
+                            </div>
+                            <div class="text-sm font-bold text-netflix-red uppercase tracking-widest mb-8 relative z-10 bg-netflix-red/10 px-4 py-1 rounded-full border border-netflix-red/30">Por Ano!</div>
+                            
+                            <div class="w-full bg-[#050505] border border-green-500/60 text-white py-5 rounded-lg text-sm font-bold flex flex-col items-center justify-center gap-1 relative z-10 shadow-[inset_0_0_30px_rgba(34,197,94,0.15)]">
+                                <span class="text-gray-300 text-xs font-semibold uppercase tracking-wider">Sua economia real garantida:</span>
+                                <span class="text-2xl text-green-400 drop-shadow-lg"><i class="fa-solid fa-piggy-bank mr-2"></i> R$ 2.726,90 poupados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-10 md:py-14 bg-netflix-black relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 reveal">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Você também leva hoje...</h2>
+                <p class="text-gray-300 font-medium text-lg">3 Presentes Exclusivos 100% Gratuitos para quem agir agora.</p>
+            </div>
+
+            <!-- Grade de 3 Bônus (Novo Formato) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch perspective-container">
+                
+                <!-- Bônus 1 -->
+                <div class="n-card rounded-2xl flex flex-col h-full tilt-card tilt-js border-netflix-red/20 hover:border-netflix-red/50 transition-colors overflow-hidden group shadow-lg shadow-black/50">
+                    <div class="relative overflow-hidden border-b border-[#222] aspect-[148/105] bg-[#0a0a0a] flex items-center justify-center">
+                        <img src="imagens/tela_minidramas.png" alt="Mini Dramas Reels" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-netflix-red text-white text-xs font-black px-3 py-1 rounded uppercase tracking-wider shadow-md border border-white/20">Bônus #01</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex-1 flex flex-col">
+                        <h3 class="text-xl font-black text-white mb-3 group-hover:text-netflix-red transition-colors">Tela Completa de Mini Dramas</h3>
+                        <p class="text-sm text-gray-400 mb-6 flex-1">Uma seção inteira dedicada aos mini dramas viciantes em formato vertical (estilo Reels/TikTok) para você maratonar rápido pelo celular onde estiver.</p>
+                        <div class="pt-4 border-t border-netflix-gray/50 flex justify-between items-center mt-auto">
+                            <span class="text-xs text-gray-500 line-through font-bold">R$ 47,00</span>
+                            <span class="text-netflix-red font-black uppercase text-sm">Grátis Hoje</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bônus 2 -->
+                <div class="n-card rounded-2xl flex flex-col h-full tilt-card tilt-js border-netflix-red/20 hover:border-netflix-red/50 transition-colors overflow-hidden group shadow-lg shadow-black/50">
+                    <div class="relative overflow-hidden border-b border-[#222] aspect-[148/105] bg-[#0a0a0a] flex items-center justify-center">
+                        <img src="imagens/lançamentos.png" alt="Lançamentos VIP" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-netflix-red text-white text-xs font-black px-3 py-1 rounded uppercase tracking-wider shadow-md border border-white/20">Bônus #02</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex-1 flex flex-col">
+                        <h3 class="text-xl font-black text-white mb-3 group-hover:text-netflix-red transition-colors">Receba Lançamentos Primeiro</h3>
+                        <p class="text-sm text-gray-400 mb-6 flex-1">Enquanto outras plataformas demoram semanas para legendar, você recebe os episódios novos no mesmo dia que saem na Coreia.</p>
+                        <div class="pt-4 border-t border-netflix-gray/50 flex justify-between items-center mt-auto">
+                            <span class="text-xs text-gray-500 line-through font-bold">R$ 67,00</span>
+                            <span class="text-netflix-red font-black uppercase text-sm">Grátis Hoje</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bônus 3 -->
+                <div class="n-card rounded-2xl flex flex-col h-full tilt-card tilt-js border-netflix-red/20 hover:border-netflix-red/50 transition-colors overflow-hidden group shadow-lg shadow-black/50">
+                    <div class="relative overflow-hidden border-b border-[#222] aspect-[148/105] bg-[#0a0a0a] flex items-center justify-center">
+                        <img src="imagens/comunidade.png" alt="Comunidade VIP" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-netflix-red text-white text-xs font-black px-3 py-1 rounded uppercase tracking-wider shadow-md border border-white/20">Bônus #03</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex-1 flex flex-col">
+                        <h3 class="text-xl font-black text-white mb-3 group-hover:text-netflix-red transition-colors">Comunidade VIP de Dorameiras</h3>
+                        <p class="text-sm text-gray-400 mb-6 flex-1">Acesso exclusivo ao nosso grupo fechado. Troque teorias, descubra doramas escondidos e surte com os finais junto com milhares de fãs.</p>
+                        <div class="pt-4 border-t border-netflix-gray/50 flex justify-between items-center mt-auto">
+                            <span class="text-xs text-gray-500 line-through font-bold">R$ 97,00</span>
+                            <span class="text-netflix-red font-black uppercase text-sm">Grátis Hoje</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="planos" class="py-10 md:py-14 bg-netflix-dark border-y border-netflix-gray/30 relative">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-netflix-red/15 blur-[150px] -z-10 rounded-t-full"></div>
+        <div class="max-w-6xl mx-auto px-4 reveal">
+            
+            <div class="text-center mb-8">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 text-white drop-shadow-lg uppercase tracking-tight">Escolha Seu <span class="text-[#FFC107]">Plano</span></h2>
+                <p class="text-gray-300 font-medium text-lg">Pagamento único. Sem renovação automática surpresa.</p>
+            </div>
+            
+            <!-- Grid 3 Planos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+                
+                <!-- Plano Mensal -->
+                <div class="n-card rounded-2xl p-8 relative flex flex-col hover:border-purple-500/50 transition-colors mt-4 md:mt-8">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md">
+                        <i class="fa-solid fa-fire"></i> Promoção
+                    </div>
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 text-center">Plano Mensal</div>
+                    <h3 class="text-2xl font-black text-white text-center uppercase mb-6">Acesso Total</h3>
+                    
+                    <div class="text-center mb-6">
+                        <p class="text-gray-500 text-sm line-through decoration-red-500 decoration-2 mb-1">De R$ 19,90</p>
+                        <div class="flex items-start justify-center text-[#FFC107]">
+                            <span class="text-sm font-bold mt-2 mr-1">POR</span>
+                            <span class="text-5xl font-black tracking-tighter drop-shadow-md">R$9,90</span>
+                            <span class="text-sm font-bold mt-auto mb-1 ml-1 text-gray-400">/mês</span>
+                        </div>
+                        <div class="inline-block bg-[#FFC107]/10 text-[#FFC107] text-[10px] font-bold px-2 py-1 rounded-sm mt-2 border border-[#FFC107]/20">
+                            ECONOMIZE R$10 • 50% OFF
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Acesso completo ao catálogo</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Novos lançamentos todos os dias</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Dublado e legendado</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> HD e 4K</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Sem anúncios</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> 2 telas</li>
+                    </ul>
+                    
+                    <a href="/checkout/1" class="checkout-link block w-full bg-purple-600 hover:bg-purple-500 text-white font-black text-center py-4 rounded-xl transition-colors uppercase tracking-wider shadow-[0_0_20px_rgba(147,51,234,0.4)]">Assinar Agora</a>
+                </div>
+
+                <!-- Plano Anual (Destaque) -->
+                <div class="bg-[#111] border-2 border-[#FFC107] rounded-2xl p-8 relative flex flex-col transform md:scale-105 shadow-[0_0_40px_rgba(255,193,7,0.15)] z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#FFC107] text-black text-xs font-black px-6 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-[0_5px_15px_rgba(255,193,7,0.4)] whitespace-nowrap">
+                        <i class="fa-regular fa-star"></i> Oferta Limitada • 35% OFF
+                    </div>
+                    <div class="text-[#FFC107] text-xs font-bold uppercase tracking-wider mb-2 text-center mt-2">Plano Anual</div>
+                    <h3 class="text-3xl font-black text-white text-center uppercase mb-6 drop-shadow-md">Acesso Por Um Ano</h3>
+                    
+                    <div class="text-center mb-6">
+                        <p class="text-gray-500 text-sm line-through decoration-red-500 decoration-2 mb-1">De R$ 39,90</p>
+                        <div class="flex items-start justify-center text-[#FFC107]">
+                            <span class="text-sm font-bold mt-2 mr-1">POR</span>
+                            <span class="text-6xl font-black tracking-tighter drop-shadow-lg">R$25,90</span>
+                        </div>
+                        <div class="inline-block bg-[#FFC107]/20 text-[#FFC107] text-xs font-bold px-3 py-1 rounded-sm mt-2 border border-[#FFC107]/40">
+                            ECONOMIZE R$14 • SÓ R$ 2,07/MÊS
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-gray-200"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Tudo do plano mensal</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-200"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Acesso por um ano completo</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-200 font-bold"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> 3 telas simultâneas</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-200 font-bold"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Suporte VIP via WhatsApp</li>
+                        <li class="flex items-start gap-3 text-sm text-netflix-red font-bold"><i class="fa-solid fa-gift mt-0.5"></i> Bônus 1: Tela Completa de Mini Dramas</li>
+                        <li class="flex items-start gap-3 text-sm text-netflix-red font-bold"><i class="fa-solid fa-gift mt-0.5"></i> Bônus 2: Receba Lançamentos Primeiro</li>
+                        <li class="flex items-start gap-3 text-sm text-netflix-red font-bold"><i class="fa-solid fa-gift mt-0.5"></i> Bônus 3: Comunidade VIP de Dorameiras</li>
+                    </ul>
+                    
+                    <a href="/checkout/3" class="checkout-link block w-full bg-[#FFC107] hover:bg-[#e0a800] text-black font-black text-center py-5 rounded-xl transition-all uppercase tracking-wider shadow-[0_0_25px_rgba(255,193,7,0.5)] transform hover:scale-105 text-lg">
+                        <i class="fa-solid fa-crown mr-2"></i> Assinar Agora
+                    </a>
+                    <p class="text-[10px] text-gray-500 text-center mt-3 flex items-center justify-center gap-1"><i class="fa-solid fa-lock"></i> Pagamento 100% seguro</p>
+                </div>
+
+                <!-- Plano Semanal -->
+                <div class="n-card rounded-2xl p-8 relative flex flex-col hover:border-purple-500/50 transition-colors mt-4 md:mt-8">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#d97706] text-white text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-md whitespace-nowrap">
+                        <i class="fa-solid fa-bolt"></i> Teste por 7 Dias
+                    </div>
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 text-center">Plano Semanal</div>
+                    <h3 class="text-2xl font-black text-white text-center uppercase mb-6">Acesso por 7 Dias</h3>
+                    
+                    <div class="text-center mb-6">
+                        <p class="text-gray-500 text-sm line-through decoration-red-500 decoration-2 mb-1">De R$ 12,90</p>
+                        <div class="flex items-start justify-center text-[#FFC107]">
+                            <span class="text-sm font-bold mt-2 mr-1">POR</span>
+                            <span class="text-5xl font-black tracking-tighter drop-shadow-md">R$5,99</span>
+                            <span class="text-sm font-bold mt-auto mb-1 ml-1 text-gray-400">/semana</span>
+                        </div>
+                        <div class="inline-block bg-[#FFC107]/10 text-[#FFC107] text-[10px] font-bold px-2 py-1 rounded-sm mt-2 border border-[#FFC107]/20">
+                            IDEAL PARA EXPERIMENTAR
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Acesso completo ao catálogo</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Novos lançamentos</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> Dublado e legendado</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> HD e 4K</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-[#FFC107] mt-0.5"></i> 1 tela</li>
+                    </ul>
+                    
+                    <a href="/checkout/2" class="checkout-link block w-full bg-purple-600 hover:bg-purple-500 text-white font-black text-center py-4 rounded-xl transition-colors uppercase tracking-wider shadow-[0_0_20px_rgba(147,51,234,0.4)]">Assinar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-6 md:py-8 bg-netflix-dark relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 reveal">
+            <!-- Banner Horizontal Garantia -->
+            <div class="mt-12 max-w-4xl mx-auto n-card p-8 md:p-10 rounded-2xl border-t-2 border-t-white relative hover:border-white/50 transition-colors flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+                <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-[#111] text-white flex items-center justify-center rounded-full text-3xl md:text-4xl border border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-black text-white mb-3">Risco Absolutamente <span class="text-gray-400">Zero</span></h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">Você tem <strong>7 Dias de Teste Grátis</strong>. Não gostou da qualidade de imagem ou da dublagem? Basta enviar um e-mail ou apertar um botão no painel e devolvemos 100% do seu dinheiro instantaneamente, sem taxas e sem perguntas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 md:py-14 bg-[#0a0a0a] relative border-t border-netflix-gray/30 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FFC107]/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+        <div class="max-w-5xl mx-auto px-4 reveal relative z-10">
+            <h2 class="text-3xl md:text-5xl font-black mb-6 text-center uppercase tracking-tight text-white">Por que <span class="text-[#FFC107]">DoramaStream</span> ganha</h2>
+
+            <div class="n-card rounded-2xl overflow-hidden border border-netflix-gray/40 shadow-2xl bg-[#111]">
+                <!-- Table Header -->
+                <div class="grid grid-cols-4 p-4 md:p-6 border-b border-netflix-gray/40 items-center">
+                    <div class="col-span-1 text-white font-bold text-xs md:text-lg">Recurso</div>
+                    <div class="col-span-1 text-center font-black text-[#FFC107] text-xs md:text-xl uppercase drop-shadow-md">DoramaStream</div>
+                    <div class="col-span-1 text-center font-medium text-gray-400 text-xs md:text-base">Netflix</div>
+                    <div class="col-span-1 text-center font-medium text-gray-400 text-xs md:text-base">Telegram</div>
+                </div>
+
+                <!-- Row 1 -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Catálogo 100% de doramas</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                    <div class="col-span-1 text-center text-white font-bold text-xs md:text-base z-10">Limitado</div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Maioria dublado em PT-BR</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Sem travamentos</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+
+                <!-- Row: Atualizacao diaria -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Atualização diária</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                    <div class="col-span-1 text-center text-white font-bold text-xs md:text-base z-10">Lento</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Sem anúncios</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-white font-bold text-xs md:text-base z-10">Plano caro</div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+
+                <!-- Row: Seguro e legal -->
+                <div class="grid grid-cols-4 border-b border-[#222] hover:bg-[#151515] transition-colors items-center relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/5 z-0 pointer-events-none border-x border-[#FFC107]/10"></div>
+                    <div class="col-span-1 text-gray-300 font-medium text-xs md:text-base p-4 md:p-6 z-10">Seguro e legal</div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-[#FFC107] text-lg md:text-xl z-10"><i class="fa-solid fa-check"></i></div>
+                    <div class="col-span-1 text-center text-red-600/70 text-lg md:text-xl z-10"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="grid grid-cols-4 items-center bg-[#050505] relative">
+                    <div class="absolute inset-y-0 left-[25%] right-[50%] bg-[#FFC107]/10 z-0 pointer-events-none border-x border-[#FFC107]/20"></div>
+                    <div class="col-span-1 text-white font-bold text-xs md:text-base p-4 md:p-6 z-10">Preço por mês</div>
+                    <div class="col-span-1 text-center text-white font-black text-sm md:text-2xl z-10">R$ 2,07</div>
+                    <div class="col-span-1 text-center text-white font-bold text-xs md:text-base z-10">R$ 55,90</div>
+                    <div class="col-span-1 text-center text-white font-bold text-xs md:text-base z-10">Grátis*</div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-500 text-xs md:text-sm mt-4">*Telegram pirata é instável, ilegal e cheio de vírus.</p>
+        </div>
+    </section>
+
+    <section class="py-10 md:py-14 bg-netflix-black relative border-t border-netflix-gray/30">
+        <div class="max-w-3xl mx-auto px-4 reveal">
+            <h2 class="text-3xl md:text-5xl font-black mb-6 text-center text-white">Dúvidas Frequentes</h2>
+            
+            <div class="space-y-4">
+                <div class="faq-item n-card p-6 rounded-xl cursor-pointer hover:border-netflix-red/30 transition-colors" onclick="this.classList.toggle('active')">
+                    <h4 class="text-white font-bold flex justify-between items-center text-lg">
+                        Funciona na minha Smart TV? <i class="fa-solid fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </h4>
+                    <div class="faq-answer mt-0">
+                        <p class="text-gray-400 text-sm md:text-base mt-4 pt-4 border-t border-netflix-gray">Sim! A nossa plataforma roda perfeitamente pelo navegador em qualquer dispositivo. Você pode assistir na TV da sala, no celular (iOS/Android), no tablet ou no computador, sem travar.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item n-card p-6 rounded-xl cursor-pointer hover:border-netflix-red/30 transition-colors" onclick="this.classList.toggle('active')">
+                    <h4 class="text-white font-bold flex justify-between items-center text-lg">
+                        E se eu não gostar? <i class="fa-solid fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </h4>
+                    <div class="faq-answer mt-0">
+                        <p class="text-gray-400 text-sm md:text-base mt-4 pt-4 border-t border-netflix-gray">Você tem a nossa Garantia Risco Zero de 7 dias. Basta enviar uma mensagem no suporte ou apertar um botão no painel que devolvemos 100% do seu dinheiro, sem burocracia.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item n-card p-6 rounded-xl cursor-pointer hover:border-netflix-red/30 transition-colors" onclick="this.classList.toggle('active')">
+                    <h4 class="text-white font-bold flex justify-between items-center text-lg">
+                        Tem limite de telas simultâneas? <i class="fa-solid fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </h4>
+                    <div class="faq-answer mt-0">
+                        <p class="text-gray-400 text-sm md:text-base mt-4 pt-4 border-t border-netflix-gray">O plano anual permite que você crie o seu perfil e divida a conta assistindo em até 3 telas ao mesmo tempo, em altíssima resolução HD e 4K.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item n-card p-6 rounded-xl cursor-pointer hover:border-netflix-red/30 transition-colors" onclick="this.classList.toggle('active')">
+                    <h4 class="text-white font-bold flex justify-between items-center text-lg">
+                        Quando eu recebo o acesso? <i class="fa-solid fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </h4>
+                    <div class="faq-answer mt-0">
+                        <p class="text-gray-400 text-sm md:text-base mt-4 pt-4 border-t border-netflix-gray">Imediatamente! Assim que o seu pagamento (PIX ou Cartão) for aprovado, o sistema envia automaticamente as credenciais seguras para o seu e-mail e WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#050505] border-t border-netflix-gray/30 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-gray-500 text-sm font-bold mb-2"><span class="logo-dorama text-xl align-middle mr-1">DORAMASTREAM</span> &copy; 2024</p>
+                <p class="text-xs text-gray-600">Este site não é afiliado à Netflix, Disney, Amazon, iQIYI, Dramabox ou Rakuten Viki.</p>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-500 font-medium">
+                <a href="#" class="hover:text-netflix-red transition-colors">Termos de Uso</a>
+                <a href="#" class="hover:text-netflix-red transition-colors">Privacidade</a>
+                <a href="#" class="hover:text-netflix-red transition-colors">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const TMDB_API_KEY = 'e2f5e47a439d9efad841fdb1c481b96f';
+
+        // Carrega capas do TMDB para o Carrossel
+        async function loadTMDBDoramas() {
+            try {
+                const carousel = document.getElementById('doramaCarousel');
+                let imagesHtml = '<div class="flex gap-4">';
+                let doramas = [{"title": "Advogadaextra", "cover_image": "imagens/carrossel_doramas/advogadaextra.webp"}, {"title": "Alição", "cover_image": "imagens/carrossel_doramas/alição.jpg"}, {"title": "Amor De Mentira", "cover_image": "imagens/carrossel_doramas/amor-de-mentira.jpg"}, {"title": "Amormoraleft", "cover_image": "imagens/carrossel_doramas/amormoraleft.webp"}, {"title": "Aprendendoalicao", "cover_image": "imagens/carrossel_doramas/aprendendoalicao.jpg"}, {"title": "Aveiaperfeita", "cover_image": "imagens/carrossel_doramas/aveiaperfeita.webp"}, {"title": "Beijotnt", "cover_image": "imagens/carrossel_doramas/beijotnt.jpg"}, {"title": "Belezafalsa", "cover_image": "imagens/carrossel_doramas/belezafalsa.jpg"}, {"title": "Boyondemand", "cover_image": "imagens/carrossel_doramas/boyondemand.jpg"}, {"title": "Climadeamor", "cover_image": "imagens/carrossel_doramas/climadeamor.jfif"}, {"title": "Desgracaaomeudispore", "cover_image": "imagens/carrossel_doramas/desgracaaomeudispore.jpg"}, {"title": "Globin", "cover_image": "imagens/carrossel_doramas/globin.webp"}, {"title": "Goodboy", "cover_image": "imagens/carrossel_doramas/goodboy.jpg"}, {"title": "Hapiness", "cover_image": "imagens/carrossel_doramas/hapiness.jpg"}, {"title": "Hidden Love", "cover_image": "imagens/carrossel_doramas/hidden-love.jpg"}, {"title": "Hieararchy", "cover_image": "imagens/carrossel_doramas/hieararchy.jpg"}, {"title": "Hospitalplaylist", "cover_image": "imagens/carrossel_doramas/Hospitalplaylist.jpg"}, {"title": "Moving", "cover_image": "imagens/carrossel_doramas/moving.jpg"}, {"title": "Mulherfortebongsoon", "cover_image": "imagens/carrossel_doramas/mulherfortebongsoon.jpg"}, {"title": "Myalchemysouls", "cover_image": "imagens/carrossel_doramas/myalchemysouls.jpg"}, {"title": "Mydearestnemesis", "cover_image": "imagens/carrossel_doramas/mydearestnemesis.webp"}, {"title": "Mydemon", "cover_image": "imagens/carrossel_doramas/mydemon.webp"}, {"title": "Myroyalnemesis", "cover_image": "imagens/carrossel_doramas/myroyalnemesis.webp"}, {"title": "Never Ending Summer", "cover_image": "imagens/carrossel_doramas/never-ending-summer.webp"}, {"title": "Oamortaesgotadop", "cover_image": "imagens/carrossel_doramas/oamortaesgotadop.webp"}, {"title": "Ostontos", "cover_image": "imagens/carrossel_doramas/ostontos.webp"}, {"title": "Otaxista", "cover_image": "imagens/carrossel_doramas/Otaxista.jpg"}, {"title": "Otempotemandaembora", "cover_image": "imagens/carrossel_doramas/otempotemandaembora.webp"}, {"title": "Pousandonolove", "cover_image": "imagens/carrossel_doramas/pousandonolove.jpg"}, {"title": "Pretendentesurpresa", "cover_image": "imagens/carrossel_doramas/pretendentesurpresa.jpg"}, {"title": "Pursuitofjader", "cover_image": "imagens/carrossel_doramas/pursuitofjader.webp"}, {"title": "Rainha Das Lagrimas", "cover_image": "imagens/carrossel_doramas/Rainha-das-lagrimas.webp"}, {"title": "Responde1988", "cover_image": "imagens/carrossel_doramas/responde1988.jpg"}, {"title": "Roadtosucess", "cover_image": "imagens/carrossel_doramas/roadtosucess.webp"}, {"title": "Round6", "cover_image": "imagens/carrossel_doramas/round6.webp"}, {"title": "Sedesejopsmatassem", "cover_image": "imagens/carrossel_doramas/sedesejopsmatassem.png"}, {"title": "Sorrifalso", "cover_image": "imagens/carrossel_doramas/sorrifalso.jpg"}, {"title": "Terradogold", "cover_image": "imagens/carrossel_doramas/terradogold.png"}, {"title": "Tudobvem", "cover_image": "imagens/carrossel_doramas/tudobvem.jpg"}, {"title": "Umamordefaixadinha", "cover_image": "imagens/carrossel_doramas/umamordefaixadinha.jpg"}, {"title": "Vincenzo", "cover_image": "imagens/carrossel_doramas/vincenzo.jpg"}, {"title": "Zombieschool", "cover_image": "imagens/carrossel_doramas/zombieschool.jpg"}];
+
+                doramas.sort(() => Math.random() - 0.5);
+                let allDoramas = [...doramas, ...doramas, ...doramas];
+
+                allDoramas.forEach(dorama => {
+                    if(dorama.cover_image) {
+                        imagesHtml += `<div class="w-32 h-48 md:w-40 md:h-60 bg-[#141414] rounded-md overflow-hidden relative shadow-lg shrink-0 border border-[#2D2D2D]/50 hover:border-[#FF0A16] hover:scale-105 transition-all duration-300" title="${dorama.title}"><img src="${dorama.cover_image}" alt="${dorama.title}" class="w-full h-full object-cover"></div>`;
+                    }
+                });
+
+                imagesHtml += '</div>';
+                carousel.innerHTML = imagesHtml + imagesHtml;
+                carousel.style.animationDuration = '120s';
+                carousel.classList.remove('opacity-0');
+            } catch (error) {
+                console.error("Erro ao montar doramas", error);
+            }
+        }
+
+        // Timer
+        function startTimer(duration, display) {
+            if (!display) return;
+            let timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // Busca de Dorama Interativa
+        async function simulateSearch(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const input = document.getElementById('searchDorama');
+            const resultBox = document.getElementById('searchResult');
+            if (!input || !resultBox) return;
+            const query = input.value.trim();
+            if (!query) return;
+
+            resultBox.classList.remove('hidden');
+            resultBox.style.opacity = '1';
+            resultBox.innerHTML = `
+                <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-netflix-gray animate-pulse">
+                    <div class="w-14 h-20 bg-gray-800 rounded shrink-0"></div>
+                    <div class="flex-1 text-left">
+                        <div class="text-sm font-bold text-gray-300">Consultando o catálogo completo...</div>
+                    </div>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (Array.isArray(data) && data.length > 0) {
+                    const item = data[0];
+                    resultBox.innerHTML = `
+                        <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-netflix-red/50 shadow-[0_0_20px_rgba(255,10,22,0.2)]">
+                            <img src="${item.cover_image || 'imagens/carrossel_doramas/pousandonolove.jpg'}" class="w-14 h-20 object-cover rounded shadow-md shrink-0" alt="${item.title}" onerror="this.src='imagens/carrossel_doramas/pousandonolove.jpg'">
+                            <div class="flex-1 text-left">
+                                <span class="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-0.5 rounded uppercase border border-green-500/30">Disponível no Catálogo</span>
+                                <h4 class="text-white font-bold text-base md:text-lg mt-1">${item.title}</h4>
+                                <p class="text-gray-400 text-xs">Áudio Dublado & Legendado • Qualidade 4K</p>
+                            </div>
+                            <a href="#planos" class="bg-netflix-red hover:bg-red-700 text-white font-bold px-4 py-2 rounded text-xs md:text-sm whitespace-nowrap transition-colors shadow-[0_0_15px_rgba(255,10,22,0.4)]">
+                                Assistir
+                            </a>
+                        </div>
+                    `;
+                    return;
+                }
+            } catch (err) {
+                // Fallback elegante
+            }
+
+            resultBox.innerHTML = `
+                <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-netflix-red/50 shadow-[0_0_20px_rgba(255,10,22,0.2)]">
+                    <div class="w-12 h-12 rounded-full bg-netflix-red/20 text-netflix-red flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <span class="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-0.5 rounded uppercase border border-green-500/30">Disponível no Catálogo</span>
+                        <h4 class="text-white font-bold text-base md:text-lg mt-1">"${query}"</h4>
+                        <p class="text-gray-400 text-xs">Episódios completos com opções dublado e legendado em Full HD / 4K!</p>
+                    </div>
+                    <a href="#planos" class="bg-netflix-red hover:bg-red-700 text-white font-bold px-4 py-2 rounded text-xs md:text-sm whitespace-nowrap transition-colors shadow-[0_0_15px_rgba(255,10,22,0.4)]">
+                        Assistir
+                    </a>
+                </div>
+            `;
+        }
+
+        // On Load
+        document.addEventListener("DOMContentLoaded", function() {
+            loadTMDBDoramas();
+
+            const countdownEl = document.querySelector('#countdown');
+            if (countdownEl) {
+                startTimer(14 * 60 + 59, countdownEl);
+            }
+
+            // VanillaTilt
+            const tiltCards = document.querySelectorAll(".tilt-js");
+            tiltCards.forEach(card => {
+                card.addEventListener("mousemove", (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            });
+
+            // Spotlight
+            const spotlights = document.querySelectorAll('.spotlight-card');
+            spotlights.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+            });
+
+            // Reveal Animation com IntersectionObserver + Fallback imediato
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            function activateVisible() {
+                const triggerBottom = window.innerHeight + 150;
+                revealElements.forEach(el => {
+                    if (!el.classList.contains('active')) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < triggerBottom) {
+                            el.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '0px 0px 100px 0px' });
+
+                revealElements.forEach(el => observer.observe(el));
+            }
+
+            window.addEventListener('scroll', activateVisible, { passive: true });
+            activateVisible();
+            setTimeout(activateVisible, 200);
+            setTimeout(activateVisible, 800);
+            
+            // Navbar Shadow
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (nav) {
+                    if (window.scrollY > 50) {
+                        nav.classList.add('shadow-lg');
+                    } else {
+                        nav.classList.remove('shadow-lg');
+                    }
+                }
+            });
+
+            // Forward UTM and referral params to all checkout links
+            if (window.location.search) {
+                document.querySelectorAll('.checkout-link').forEach(function(link) {
+                    var sep = link.href.indexOf('?') !== -1 ? '&' : '?';
+                    link.href = link.href + sep + window.location.search.substring(1);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
